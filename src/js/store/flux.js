@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			people: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -15,6 +16,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+
+
+			loadData: async() => {
+				const response = await fetch("https://www.swapi.tech/api/people/", {
+					method: "GET"
+				})
+				console.log(response.ok)
+				if (response.ok){
+					const data = await response.json();
+					setStore({people: data.results})
+					console.log(data.results)
+				}
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
