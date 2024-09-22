@@ -3,7 +3,7 @@ import React from 'react'
 
 const Card = (props) => {
     return (
-        <div className="card" style={{width: "400px", height: "500px"}}>
+        <div className="card" style={{minWidth: "400px", height: "500px"}}>
             <img src={props.image} className="card-img-top" alt="no cargo la imagen" />
             <div className="card-body">
                 <h5 className="card-title">{props.characterName}</h5>

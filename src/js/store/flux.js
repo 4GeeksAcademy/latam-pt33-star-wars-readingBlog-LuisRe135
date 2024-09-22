@@ -26,9 +26,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.ok){
 					const data = await response.json();
 					setStore({people: data.results})
-					console.log(data.results)
+					getStore().people.map((person)=>{setStore({people: {... }})})
 				}
 			},
+			loadPerson: async(id) => {
+				const response = await fetch(`https://www.swapi.tech/api/people/${id}`, {
+					method: "GET"
+				})
+				if (response.ok){
+					getStore().people.map()
+				}
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
