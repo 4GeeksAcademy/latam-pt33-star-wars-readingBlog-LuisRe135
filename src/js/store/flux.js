@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			people: [],
+			peoplesProperties: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -19,14 +20,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			loadData: async() => {
+				const store = getStore()
 				const response = await fetch("https://www.swapi.tech/api/people/", {
 					method: "GET"
 				})
-				console.log(response.ok)
+				
 				if (response.ok){
 					const data = await response.json();
-					setStore({people: data.results})
-					getStore().people.map((person)=>{setStore({people: {... }})})
+					let properties = [];
+					// console.log(data)
+					for (let person of data.results){
+						const character = await getActions().loadPerson(person.uid)
+						properties.push(character)
+					}
+					// console.log("antes")
+					// console.log(properties)
+					// console.log("despues")
+					setStore({people: properties})
+					
 				}
 			},
 			loadPerson: async(id) => {
@@ -34,7 +45,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: "GET"
 				})
 				if (response.ok){
-					getStore().people.map()
+					const data = await response.json()
+					// console.log(data.result.properties)
+					return data.result
 				}
 			},
 

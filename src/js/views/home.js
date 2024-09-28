@@ -6,14 +6,18 @@ import Card from "../component/Card.jsx";
 
 export const Home = () =>{ 
 	const {store, actions} = useContext(Context);
+	// console.log(store.peoplesProperties)
 	return(
+		
+		<div className="text-center container mt-5 d-flex flex-row" style={{height: "550px", overflowX: "scroll"}}>
+			{store.people.map((item, index) => {
+				console.log(item)
+				return <Card key={index} characterName={item.properties.name} gender={item.properties.gender} />
+			})}
+		</div>
+			
 	
-	<div className="text-center container mt-5 d-flex flex-row" style={{height: "550px", overflowX: "scroll"}}>
-		{store.people.map((person, index) =>{ 
-			console.log(person.gender)
-			return <Card key= {person.uid} characterName = {person.name} gender={person.gender} eyeColor={person.eye_color} image="..." />
+		
 
-		})}
 
-	</div>
-)};
+	)};

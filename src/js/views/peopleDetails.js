@@ -1,6 +1,6 @@
 import React from "react";
 
-const PeapleDetails = (props) =>{
+const PeopleDetails = (props) =>{
     return (
         <div>
             <div className="d-flex">
@@ -41,3 +41,4 @@ const PeapleDetails = (props) =>{
         </div>
     )
 }
+export default PeopleDetails;
