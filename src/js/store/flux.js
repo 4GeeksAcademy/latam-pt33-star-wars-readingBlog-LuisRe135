@@ -28,14 +28,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.ok){
 					const data = await response.json();
 					let properties = [];
-					// console.log(data)
+				
 					for (let person of data.results){
 						const character = await getActions().loadPerson(person.uid)
 						properties.push(character)
 					}
-					// console.log("antes")
-					// console.log(properties)
-					// console.log("despues")
+				
 					setStore({people: properties})
 					
 				}
@@ -46,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				if (response.ok){
 					const data = await response.json()
-					// console.log(data.result.properties)
+					
 					return data.result
 				}
 			},
