@@ -3,9 +3,12 @@ import { Context } from "../store/appContext";
 
 const PeopleDetails = (props) =>{
     const {store, actions} = useContext(Context);
+    const { state } = props.location;
+    const {details} = state
     return (
         <>
             <div>
+                <h1>{details.name}</h1>
                 <div className="d-flex">
                     <img src={props.image} />
                     <div>
