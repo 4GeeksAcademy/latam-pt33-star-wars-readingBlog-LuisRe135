@@ -14,7 +14,9 @@ export const Home = () =>{
 					
 					return <Card key={index} image={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`} 
 							characterName={item.properties.name} gender={item.properties.gender} hair={item.properties.hair_color} 
-							eyeColor={item.properties.eye_color} id={item.uid} />
+							eyeColor={item.properties.eye_color} id={item.uid} birthYear= {item.properties.birth_year}
+							skinColor={item.properties.skin_color} description={item.description} 
+							height={item.properties.height} />
 				})}
 			</div>
 		</>	

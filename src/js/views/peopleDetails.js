@@ -1,46 +1,48 @@
 import React, {useContext} from "react";
 import { Context } from "../store/appContext";
+import { useLocation } from 'react-router-dom';
 
 const PeopleDetails = (props) =>{
     const {store, actions} = useContext(Context);
-    const { state } = props.location;
-    const {details} = state
+    let { state } = useLocation();
+    const { image, name, birthYear, gender, hair, skin, eyes, height, description } = state
+ 
     return (
         <>
             <div>
-                <h1>{details.name}</h1>
+                
                 <div className="d-flex">
-                    <img src={props.image} />
+                    <img src={image} />
                     <div>
-                        <h1>{props.name}</h1>
-                        <p>{props.description}</p>
+                        <h1>{name}</h1>
+                        <p>{description}</p>
                     </div>
                 </div>
                 <hr className = "text_danger" />
                 <div className="container text-danger d-flex justify-content-between">
-                    <div>
-                        Name
-                        {props.name}
+                    <div className="text-center">
+                        <h6>Name</h6>
+                        {name}
                     </div>
-                    <div>
-                        Birth Year
-                        {props.birthYear}
+                    <div className="text-center">
+                        <h6>Birth Year</h6>
+                        {birthYear}
                     </div>
-                    <div>
-                        Gender
-                        {props.gender}
+                    <div className="text-center">
+                        <h6>Gender</h6>
+                        {gender}
                     </div>
-                    <div>
-                        Height
-                        {props.height}
+                    <div className="text-center">
+                        <h6>Height</h6>
+                        {height}
                     </div>
-                    <div>
-                        Skin Color
-                        {props.skinColor}
+                    <div className="text-center">
+                        <h6>Skin Color</h6>
+                        {skin}
                     </div>
-                    <div>
-                        Eye Color
-                        {props.eyeColor}
+                    <div className="text-center">
+                        <h6>Eye Color</h6>
+                        {eyes}
                     </div>
 
                 </div>

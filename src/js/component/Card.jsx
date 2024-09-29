@@ -12,7 +12,10 @@ const Card = (props) => {
         gender: props.gender,
         skin: props.skinColor,
         eyes: props.eyeColor,
-        hair: props.hair
+        hair: props.hair,
+        image: props.image,
+        description: props.description,
+        height: props.height
     }
     return (
         <div className="card" style={{minWidth: "400px", height: "450px"}}>
