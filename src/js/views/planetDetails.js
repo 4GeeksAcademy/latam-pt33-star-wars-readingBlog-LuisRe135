@@ -2,11 +2,11 @@ import React, {useContext} from "react";
 import { Context } from "../store/appContext";
 import { useLocation } from 'react-router-dom';
 
-const PeopleDetails = (props) =>{
+const PlanetDetails = (props) =>{
     const {store, actions} = useContext(Context);
     let { state } = useLocation();
-    const { image, name, birthYear, gender, hair, skin, eyes, height, description } = state
- 
+    const { image, name, orbitalPeriod, rotationalPeriod, climate, diameter, description } = state
+
     return (
         <>
             <div className="container" style={{maxWidth: "70%"}}>
@@ -25,29 +25,26 @@ const PeopleDetails = (props) =>{
                         {name}
                     </div>
                     <div className="text-center">
-                        <h6>Birth Year</h6>
-                        {birthYear}
+                        <h6>Orbital Period</h6>
+                        {orbitalPeriod}
                     </div>
                     <div className="text-center">
-                        <h6>Gender</h6>
-                        {gender}
+                        <h6>Rotation</h6>
+                        {rotationalPeriod}
                     </div>
                     <div className="text-center">
-                        <h6>Height</h6>
-                        {height}
+                        <h6>Climate</h6>
+                        {climate}
                     </div>
                     <div className="text-center">
-                        <h6>Skin Color</h6>
-                        {skin}
+                        <h6>Diameter</h6>
+                        {diameter}
                     </div>
-                    <div className="text-center">
-                        <h6>Eye Color</h6>
-                        {eyes}
-                    </div>
+                    
 
                 </div>
             </div>
         </>
     )
 }
-export default PeopleDetails;
+export default PlanetDetails;

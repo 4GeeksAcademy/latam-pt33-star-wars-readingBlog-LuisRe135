@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			people: [],
-			peoplesProperties: [],
+			planets: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -38,8 +38,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}
 			},
+			loadAllPlanets: async() => {
+				const store = getStore()
+				const response = await fetch("https://www.swapi.tech/api/planets/", {
+					method: "GET"
+				})
+				
+				if (response.ok){
+					const data = await response.json();
+					let properties = [];
+				
+					for (let planet of data.results){
+						const indPlanet = await getActions().loadPlanet(planet.uid)
+						properties.push(indPlanet)
+					}
+				
+					setStore({planets: properties})
+					
+				}
+			},
 			loadPerson: async(id) => {
 				const response = await fetch(`https://www.swapi.tech/api/people/${id}`, {
+					method: "GET"
+				})
+				if (response.ok){
+					const data = await response.json()
+					
+					return data.result
+				}
+			},
+			loadPlanet: async(id) => {
+				const response = await fetch(`https://www.swapi.tech/api/planets/${id}`, {
 					method: "GET"
 				})
 				if (response.ok){

@@ -4,10 +4,10 @@ import { Context } from "../store/appContext";
 
 
 
-const Card = (props) => {
+const PeopleCard = (props) => {
     const {store, actions} = useContext(Context);
     const personInfo = {
-        name: props.characterName,
+        name: props.name,
         birthYear: props.birthYear,
         gender: props.gender,
         skin: props.skinColor,
@@ -18,9 +18,9 @@ const Card = (props) => {
         height: props.height
     }
     return (
-        <div className="card" style={{minWidth: "400px", height: "450px"}}>
-            <img src={props.image} className="card-img-top img-fluid" alt="no cargo la imagen" style={{objectFit: 'contain',minWidth: "400px", height: "300px"}} />
-            <div className="card-body">
+        <div className="card m-2" style={{minWidth: "400px", height: "450px"}}>
+            <img src={props.image} className="card-img-top img-fluid" alt="no cargo la imagen" style={{objectFit: 'contain',minWidth: "400px", height: "200px"}} />
+            <div className="card-body ">
                 <h5 className="card-title">{personInfo.name}</h5>
                 <p className="card-text">Gender: {personInfo.gender}</p>
                 <p className="card-text">Hair Color: {personInfo.hair}</p>
@@ -32,4 +32,4 @@ const Card = (props) => {
 }
 
 
-export default Card;
+export default PeopleCard;

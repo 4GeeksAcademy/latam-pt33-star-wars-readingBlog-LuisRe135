@@ -26,7 +26,7 @@ const injectContext = PassedComponent => {
 			
 
 			state.actions.loadData()
-			
+			state.actions.loadAllPlanets()
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
