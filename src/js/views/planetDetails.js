@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { useLocation } from 'react-router-dom';
 
 const PlanetDetails = (props) =>{
-    const {store, actions} = useContext(Context);
+    
     let { state } = useLocation();
     const { image, name, orbitalPeriod, rotationalPeriod, climate, diameter, description } = state
 
