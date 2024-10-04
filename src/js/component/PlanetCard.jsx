@@ -25,8 +25,11 @@ const PlanetCard = (props) => {
                 <h5 className="card-title">{planetInfo.name}</h5>
                 <p className="card-text">Population: {planetInfo.population}</p>
                 <p className="card-text">Terrain: {planetInfo.terrain}</p>
-                
-                <Link to={"/planet-details/" + props.id} state={planetInfo} ><button className="btn btn-primary">Learn more!</button></Link>
+                <div className="d-flex justify-content-around">
+                    <Link to={"/planet-details/" + props.id} state={planetInfo} ><button className="btn btn-primary">Learn more!</button></Link>
+                    <button type="button" className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(planetInfo.name)}}><i className="fa-regular fa-heart"></i></button>
+
+                </div>
             </div>
         </div>
     )

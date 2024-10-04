@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			planets: [],
+			favorites: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -20,7 +21,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			loadData: async() => {
-				const store = getStore()
 				const response = await fetch("https://www.swapi.tech/api/people/", {
 					method: "GET"
 				})
@@ -76,6 +76,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 					return data.result
 				}
+			},
+			addFavorites: async(item) => {
+				const store = getStore();
+				let fav = store.favorites;
+				fav.push(item);
+				setStore({favorites: fav})
+				console.log(store.favorites)
+				// console.log(item)
+			},
+			deleteFavorites: (item)=> {
+				
+				const store = getStore();
+				let newFav = store.favorites;
+				if (newFav.includes(item)){
+					const index = newFav.indexOf(item)
+					newFav.splice(index, 1);
+					setStore({favorites: newFav})
+					console.log(store.favorites)
+				}
+				
 			},
 
 			// Use getActions to call a function within a fuction

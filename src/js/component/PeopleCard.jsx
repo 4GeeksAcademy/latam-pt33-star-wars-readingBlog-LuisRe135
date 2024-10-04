@@ -25,7 +25,11 @@ const PeopleCard = (props) => {
                 <p className="card-text">Gender: {personInfo.gender}</p>
                 <p className="card-text">Hair Color: {personInfo.hair}</p>
                 <p className="card-text">Eye Color: {personInfo.eyes}</p>
-                <Link to={"/details/" + props.id} state={personInfo} ><button className="btn btn-primary">Learn more!</button></Link>
+                <div className="d-flex justify-content-around">
+                    <Link to={"/details/" + props.id} state={personInfo} ><button className="btn btn-primary">Learn more!</button></Link>
+                    <button type="button" className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(personInfo.name)}}><i className="fa-regular fa-heart"></i></button>
+                    <span onClick={()=>{actions.deleteFavorites(personInfo.name)}} ><i className="fa-solid fa-trash"></i></span>
+                </div>
             </div>
         </div>
     )
