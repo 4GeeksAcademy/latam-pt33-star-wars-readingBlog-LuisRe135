@@ -124,7 +124,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const index = newFav.indexOf(item)
 					newFav.splice(index, 1);
 					setStore({favorites: newFav})
-					console.log(store.favorites)
+					
 				
 				
 			},

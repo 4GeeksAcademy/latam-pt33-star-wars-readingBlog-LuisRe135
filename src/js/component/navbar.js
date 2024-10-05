@@ -19,7 +19,7 @@ export const Navbar = () => {
 				</button>
 				<ul className="dropdown-menu">
 					{store.favorites.map((item, index)=>{
-						return (<li key={index} className="d-flex justify-content-around"><Link  to={"/vehicle-details/" + item.id} state={item} ><button className="dropdown-item">{item.name}</button></Link>
+						return (<li key={index} className="d-flex justify-content-around"><Link  to={"/"+item.type+"details/" + item.id} state={item} ><button className="dropdown-item">{item.name}</button></Link>
 								<span onClick={()=>{actions.deleteFavorites(item)}} ><i className="fa-solid fa-trash"></i></span></li>)
 					})}
 					
