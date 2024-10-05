@@ -5,9 +5,10 @@ import { Context } from "../store/appContext";
 
 
 const PlanetCard = (props) => {
-    const {store, actions} = useContext(Context);
+    const {actions} = useContext(Context);
     const planetInfo = {
         name: props.name,
+        type: "planet-",
         orbitalPeriod: props.orbit,
         rotationalPeriod: props.rotation,
         climate: props.climate,
@@ -27,7 +28,7 @@ const PlanetCard = (props) => {
                 <p className="card-text">Terrain: {planetInfo.terrain}</p>
                 <div className="d-flex justify-content-around">
                     <Link to={"/planet-details/" + props.id} state={planetInfo} ><button className="btn btn-primary">Learn more!</button></Link>
-                    <button type="button" className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(planetInfo.name)}}><i className="fa-regular fa-heart"></i></button>
+                    <button type="button" className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(planetInfo)}}><i className="fa-regular fa-heart"></i></button>
 
                 </div>
             </div>

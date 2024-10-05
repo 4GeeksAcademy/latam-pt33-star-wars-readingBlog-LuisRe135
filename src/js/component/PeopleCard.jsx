@@ -8,6 +8,7 @@ const PeopleCard = (props) => {
     const {store, actions} = useContext(Context);
     const personInfo = {
         name: props.name,
+        type: "",
         birthYear: props.birthYear,
         gender: props.gender,
         skin: props.skinColor,
@@ -27,8 +28,7 @@ const PeopleCard = (props) => {
                 <p className="card-text">Eye Color: {personInfo.eyes}</p>
                 <div className="d-flex justify-content-around">
                     <Link to={"/details/" + props.id} state={personInfo} ><button className="btn btn-primary">Learn more!</button></Link>
-                    <button type="button" className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(personInfo.name)}}><i className="fa-regular fa-heart"></i></button>
-                    <span onClick={()=>{actions.deleteFavorites(personInfo.name)}} ><i className="fa-solid fa-trash"></i></span>
+                    <button type="button" className="btn btn-outline-warning" onClick={()=>{actions.addFavorites(personInfo)}}><i className="fa-regular fa-heart"></i></button>
                 </div>
             </div>
         </div>

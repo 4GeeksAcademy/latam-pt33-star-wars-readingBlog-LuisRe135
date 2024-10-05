@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people: [],
 			planets: [],
 			favorites: [],
+			vehicles: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -38,6 +39,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}
 			},
+			loadAllVehicles: async() => {
+				const store = getStore()
+				const response = await fetch("https://www.swapi.tech/api/vehicles/", {
+					method: "GET"
+				})
+				
+				if (response.ok){
+					const data = await response.json();
+					let properties = [];
+				
+					for (let vehicle of data.results){
+						const indVehicle = await getActions().loadVehicle(vehicle.uid)
+						properties.push(indVehicle)
+					}
+				
+					setStore({vehicles: properties})
+					
+				}
+			},
 			loadAllPlanets: async() => {
 				const store = getStore()
 				const response = await fetch("https://www.swapi.tech/api/planets/", {
@@ -67,6 +87,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return data.result
 				}
 			},
+			loadVehicle: async(id) => {
+				const response = await fetch(`https://www.swapi.tech/api/vehicles/${id}`, {
+					method: "GET"
+				})
+				if (response.ok){
+					const data = await response.json()
+					
+					return data.result
+				}
+			},
 			loadPlanet: async(id) => {
 				const response = await fetch(`https://www.swapi.tech/api/planets/${id}`, {
 					method: "GET"
@@ -80,21 +110,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavorites: async(item) => {
 				const store = getStore();
 				let fav = store.favorites;
-				fav.push(item);
-				setStore({favorites: fav})
-				console.log(store.favorites)
-				// console.log(item)
+				if (!fav.some(favorite => favorite.name === item.name)){
+					console.log("dentro del if ")
+					fav.push(item);
+				}				
+				setStore({favorites: fav})				
 			},
 			deleteFavorites: (item)=> {
 				
 				const store = getStore();
 				let newFav = store.favorites;
-				if (newFav.includes(item)){
+				
 					const index = newFav.indexOf(item)
 					newFav.splice(index, 1);
 					setStore({favorites: newFav})
 					console.log(store.favorites)
-				}
+				
 				
 			},
 

@@ -8,10 +8,12 @@ import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 import PeopleDetails from "./views/peopleDetails";
 import PlanetDetails from "./views/planetDetails";
+import VehicleDetails from "./views/vehicleDetails";
 
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+
 
 //create your first component
 const Layout = () => {
@@ -31,6 +33,7 @@ const Layout = () => {
 						<Route path="*" element={<h1>Not found!</h1>} />
 						<Route path="/details/:id" element={<PeopleDetails />} />
 						<Route path="/planet-details/:id" element={<PlanetDetails />} />
+						<Route path="/vehicle-details/:id" element={<VehicleDetails />} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

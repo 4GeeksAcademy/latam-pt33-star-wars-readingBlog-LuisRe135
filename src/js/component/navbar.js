@@ -1,37 +1,31 @@
 import React, { useContext} from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
+
 
 export const Navbar = () => {
-	const {store} = useContext(Context);
+	const {store, actions} = useContext(Context);
 	const count = store.favorites.length
+
 	return (
 		<nav className="navbar navbar-light bg-light mb-3 px-5">
-			<span >
+			<Link to="/" >
 				<img style={{masWidth: '50px', maxHeight: '50px'}} src="https://cdn.freebiesupply.com/logos/large/2x/star-wars-logo-png-transparent.png" />
-			</span>
-			<div class="btn-group">
+			</Link>
+			<div className="btn-group">
 				<button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-					Action
+					Favorites
 					<span className="bg-light mx-1 px-1 text-dark rounded">{count}</span>
 				</button>
-				<ul class="dropdown-menu">
-					<li><a className="dropdown-item" href="#">Action</a></li>
+				<ul className="dropdown-menu">
+					{store.favorites.map((item, index)=>{
+						return (<li key={index} className="d-flex justify-content-around"><Link  to={"/vehicle-details/" + item.id} state={item} ><button className="dropdown-item">{item.name}</button></Link>
+								<span onClick={()=>{actions.deleteFavorites(item)}} ><i className="fa-solid fa-trash"></i></span></li>)
+					})}
+					
 					
 				</ul>
 			</div>
-			{/* <div className="btn-group ">
-				<div type="button" className=" btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					Action
-					<span className="bg-light mx-1 px-1 text-dark rounded">{count}</span>
-				</div>
-				<div className="dropdown-menu">
-					<span className="dropdown-item" value="action">Action</span>
-					<span className="dropdown-item">Another action</span>
-				
-					<div className="dropdown-divider"></div>
-					<span className="dropdown-item" >Separated link</span>
-  				</div>
-			</div> */}
 
 			
 		</nav>
